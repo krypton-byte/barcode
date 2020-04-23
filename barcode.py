@@ -2,9 +2,10 @@
 # open source | bebas recode
 # created by krypton
 # kamis, 23 april 2020
-# v 0.0.1 (beta)
+# v 0.0.3 (beta)
 #changelog v.0.0.1 : add fitur barcode reader
 #changelog v.0.0.2 : add fiture barcode creater
+#changelog v.0.0.3 : fix all bugs
 from pyqrcode import QRCode 
 import os
 from PIL import Image
@@ -47,23 +48,27 @@ logo = '''
 %s|____||_|%s|___|  |_| %s|___|  |_|%s|_______|%s|__| |__|%s|______| %s|_______|%s|___|  |_|
 %s'''%(  m,k,h,u,b,m,k,h,m,k,h,u,b,m,k,h,m,k,h,u,b,m,k,h,m,k,h,u,b,m,k,h,m,k,h,u,b,m,k,h,m,k,h,u,b,m,k,h,m,k,h,u,b,m,k,h,p )
 def baca(file):
-	hasil=decode(Image.open(file))[0][0].decode('utf-8')
-	return hasil
+	result=[]
+	hasil=decode(Image.open(file))
+	result.append(hasil[0][0].decode('utf-8'))
+	result.append(hasil[0][1])
+	return result
 def Buat():
+	os.system('clear')
 	print(generator)
-	teks= input('text      : ')
-	sv  = input('simpan di : ')
+	teks= input('  %s[%s?%s]%s text      : %s'%(h,k,h,b,p))
+	sv  = input('  %s[%s?%s]%s simpan di : %s'%(h,k,h,b,p))
 	bar = pyqrcode.create(teks)
-	print('%sformat\n 1. png\n 2.svg%s'%(k,p))
-	tipe = input ('%sformat : %s'%(h,p))
+	print('  %s[%s?%s]%s Format :\n\t 1. png\n\t 2 .svg%s'%(k,m,k,h,p))
+	tipe = input('  %s[%s?%s] %sformat   : %s'%(h,k,h,b,p))
 	while True:
 		if tipe in ['1','01']:
 			bar.png('%s.png'%(sv), scale = 6 )
-			print('save : %s.%s.png',(os.getcwd()[0],sv))
+			print('  %s[%s+%s]%s save : %s.%s.png%s'%(m,k,m,k,os.getcwd(),sv,p))
 			break
 		elif type in ['2','02']:
 			bar.svg('%s.svg'%(sv), scale = 8)
-			print('save : %s.%s.svg',(os.getcwd()[0],sv))
+			print('  %s[%s+%s]%s save : %s.%s.svg%s'%(m,k,m,k,os.getcwd(),sv,p))
 			break
 		else:
 			print('%s[%s*%s]%s Yang Anda Pilih  tidak Ada%s'%(m,k,m,k,p))
@@ -74,7 +79,7 @@ def Main():
 		qr = input(' %s[%s?%s]%s f%si%sl%se %s : '%(h,k,h,m,k,h,u,p))
 		if qr in os.listdir('.'):
 			try:
-				print(' %s[%s+%s]%s hasil%s : %s'%(k,b,k,h,p,baca(qr)))
+				print(' %s[%s+%s]%s hasil%s : %s\n %s[%s+%s]%s tipe  : %s%s'%(k,b,k,h,p,baca(qr)[0],k,b,k,h,p,baca(qr)[1]))
 				break
 			except:
 				print(' %s[%s!%s]%s Tidak Terbaca%s'%(k,m,k,m,p))
@@ -96,4 +101,4 @@ def menu():
 if __name__ == '__main__':
 	os.system('clear')
 	print(barcode)
-	print(menu())
+	menu()

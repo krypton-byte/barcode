@@ -1,5 +1,5 @@
-<h1> Qr Reader <h1><br>
-<h3>Installansi<h3>
+#Barcode<br>
+#installasi 
 ```
 $ apt update
 $ apt upgrade
@@ -12,5 +12,6 @@ $ python3 -m pip install pyqrcode
 $ python3 -m pip install -r requirements.txt
 $ python barcode.py
 ```
-<br><h3>Screenshot</h3><br>
+#Screenshot
 <img src="QrCode.png">
+
