@@ -1,6 +1,6 @@
 #Barcode<br>
 #installasi 
-```
+```bash
 $ apt update
 $ apt upgrade
 $ pkg install git -y
